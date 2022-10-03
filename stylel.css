@@ -23,7 +23,7 @@ h1 {
     color: var(--mainFont);
 }
 
-.flex-column {
+.column {
     display: flex;
     flex-direction: column;
 }
@@ -33,7 +33,7 @@ h1 {
     align-items: center;
 }
 
-.justify-center {
+.centered {
     text-align: center;
 }
 
@@ -48,13 +48,12 @@ h1 {
 .button {
     font-size: medium;
     padding: 8px 0;
-    margin-bottom: 2%;
-    margin-top: 2%;
+    margin: 2% 0;
     width: 20vw;
     text-align: center;
     color: var(--mainFont);
     text-decoration: none;
-    background: linear-gradient(45deg, green, goldenrod) ;
+    background: linear-gradient(45deg, green, goldenrod);
     border: 2px solid green;
     border-radius: 5px;
 }
@@ -62,4 +61,9 @@ h1 {
 .button:hover {
     box-shadow: 0 0 20px white;
     transition: ease-in-out 0.2s;
+    transform: scale(1.05);
+}
+
+#leaderboards {
+    background: linear-gradient(45deg, purple, goldenrod);
 }
