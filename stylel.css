@@ -1,5 +1,6 @@
 :root {
     background-color: lightseagreen;
+    --mainFont: white;
 }
 
 * {
@@ -19,6 +20,7 @@
 
 h1 {
     margin-bottom: 5%;
+    color: var(--mainFont);
 }
 
 .flex-column {
@@ -31,6 +33,18 @@ h1 {
     align-items: center;
 }
 
+.justify-center {
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
 .button {
     font-size: medium;
     padding: 8px 0;
@@ -38,9 +52,14 @@ h1 {
     margin-top: 2%;
     width: 20vw;
     text-align: center;
-    color: white;
+    color: var(--mainFont);
     text-decoration: none;
     background: linear-gradient(45deg, green, goldenrod) ;
     border: 2px solid green;
     border-radius: 5px;
+}
+
+.button:hover {
+    box-shadow: 0 0 20px white;
+    transition: ease-in-out 0.2s;
 }
