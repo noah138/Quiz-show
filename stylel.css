@@ -1,0 +1,46 @@
+:root {
+    background-color: lightseagreen;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+h1 {
+    margin-bottom: 5%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    font-size: medium;
+    padding: 8px 0;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    width: 20vw;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(45deg, green, goldenrod) ;
+    border: 2px solid green;
+    border-radius: 5px;
+}
