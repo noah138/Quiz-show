@@ -5,9 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Score</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div id="end" class="flex-center column">
+            <h1 id="userScore">0</h1>
+            <form class="scoreInput">
+                <h2 id="nameInput">Enter your name below:</h2>
+                <input type="text" name="name" id="username" placeholder="Name goes here">
+                <button class="button" id="submitScore" type="submit" onclick="saveScore(event)" disabled>Submit</button>
+            </form>
+            <a href="/game/quiz.html" class="button">Play Again?</a>
+            <a href="/index.html" class="button">Return Home</a>
+        </div>
+    </div>
+    <script src="input.js"></script>
 </body>
 </html>
