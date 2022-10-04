@@ -1,12 +1,17 @@
 :root {
-    background-color: lightseagreen;
+    --background-color: lightseagreen;
     --mainFont: white;
+    --border: green;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    background: radial-gradient(#e66465, #9198e5);
 }
 
 .container {
@@ -31,10 +36,6 @@ h1 {
 .flex-center {
     justify-content: center;
     align-items: center;
-}
-
-.centered {
-    text-align: center;
 }
 
 .text-center {
@@ -64,6 +65,7 @@ h1 {
     transform: scale(1.05);
 }
 
-#leaderboards {
-    background: linear-gradient(45deg, purple, goldenrod);
+#highScoresList {
+    list-style: numbers;
+    margin-bottom: 10%;
 }

@@ -1,0 +1,60 @@
+:root {
+    --mainFont: white;
+    --border: green;
+}
+
+.option-container {
+    display: flex;
+    width: 98%;
+    border-radius: 5px;
+    border: 5px solid var(--border);
+    margin: 10px 0
+}
+
+.option-container:hover,
+.next-button:hover {
+    box-shadow: 0 0 10px var(--border);
+    transform: scale(1.01);
+    transition: ease-in-out(0.5s);
+}
+
+.option-letter {
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.option-text {
+    padding: 5px;
+    width: 100%;
+}
+
+/* header */
+#game-header{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.status,
+.score-value,
+.next-button {
+    text-align: center;
+}
+
+.score-value {
+    text-align: center;
+}
+
+/* footer */
+.next-question {
+    display: flex;
+    justify-content: center;
+}
+
+.next-button {
+    margin-top: 80px;
+    padding: 15px;
+    width: 20%;
+    border-radius: 5px;
+    border: 5px solid var(--border);;
+}
+

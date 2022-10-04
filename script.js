@@ -5,11 +5,6 @@
 // Repeat this until question number equals the total length of the questions
 // Report a score and store it in the leaderboards
 
-// Start button, when clicked triggers start game function
-const startBtn = document.getElementById('start')
-
-startBtn.addEventListener("click", startGame)
-
 // function startGame {
 
 // }
@@ -21,3 +16,44 @@ startBtn.addEventListener("click", startGame)
 // function answer {
 
 // }
+
+let questions = [
+    {
+        question: "??????????",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 1"
+    },
+    {
+        question: "??????????",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 2"
+    },
+    {
+        question: "??????????",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 3"
+    },
+    {
+        question: "??????????",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 4"
+    },
+    {
+        question: "??????????",
+        options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 1"
+    }
+]
+
+var startButton = document.getElementById('play')
+var optionContainer = document.getElementById('optionContainer')
+var questionText = document.getElementById('question')
+var chosenAnswer = document.getElementById('option-text')
+
+let shuffledQuestions, currentQuestionIndex
+
+startButton.addEventListener('click', startGame)
+
+function startGame() {
+    
+}

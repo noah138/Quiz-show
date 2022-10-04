@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameplay</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <div class="container">
+    <div class="quiz-container">
         <div id="game" class="centered column">
             <div id="game-header">
-                <div class="displayItem">
-                    <p id="progressText" class="hud-prefix">
+                <div class="progress">
+                    <p id="question-number" class="status">
                         Question
                     </p>
                 </div>
@@ -26,21 +27,24 @@
                 </div>
             </div>
             <div id="question">Question?</div>
-            <div class="options.container">
+            <div class="option-container">
                 <p class="option-letter">A</p>
                 <p class="option-text" data-number="1">Option 1</p>
             </div>
-            <div class="options.container">
+            <div class="option-container">
                 <p class="option-letter">B</p>
-                <p class="option-text" data-number="1">Option 2</p>
+                <p class="option-text" data-number="2">Option 2</p>
             </div>
-            <div class="options.container">
+            <div class="option-container">
                 <p class="option-letter">C</p>
-                <p class="option-text" data-number="1">Option 3</p>
+                <p class="option-text" data-number="3">Option 3</p>
             </div>
-            <div class="options.container">
+            <div class="option-container">
                 <p class="option-letter">D</p>
-                <p class="option-text" data-number="1">Option 4</p>
+                <p class="option-text" data-number="4">Option 4</p>
+            </div>
+            <div class="next-question">
+                <p class="next-button">Next Question</p>
             </div>
         </div>
     </div>
