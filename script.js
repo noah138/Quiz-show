@@ -93,11 +93,12 @@ var maxHighScores = 5;
 var startButton = document.querySelector("#startGame");
 var startDisplay = document.querySelector("#startDisplay");
 var questionDisplay = document.querySelector("#questionsDisplay");
+var questionText = document.querySelector("#questionText");
 var endDisplay = document.querySelector("#endDisplay");
 var leaderboards = document.querySelector("#leaderboards");
 
 startButton.addEventListener("click", startGame);
-highScoresButton.addEventListener("click", showScores);
+// highScoresButton.addEventListener("click", showScores);
 
 function hideAll() {
     startDisplay.hidden = true;
@@ -110,23 +111,41 @@ function startGame() {
     hideAll();
     questionDisplay.hidden = false;
     currentQ = 0;
-    displayQ();
+    displayQ(questions[currentQ]);
     timer = 30;
     displayTime();
 }
 
-function displayQ() {
-    let question = questions[currentQ];
-    let choices = question.choices;
-    let choiceBtn = document.querySelector()
+function displayQ(question) {
+    questionText.innerText = question.question;
+    question.answers.forEach(answer => {
+        var btn = document.createElement("button");
+        btn.innerText = answer.text;
+        btn.classList.add("button");
+        if(answer.correct) {
+            btn.dataset.correct = answer.correct;
+        }
+        btn.addEventListener("click", selectAnswer);
+        answerButtons.appendChild(btn);
+    });
+}
 
-    let questionHeader = document.querySelector("#questionText");
-    questionHeader.textContent = question.question;
-
-    for (let i=0; i < choices.length; i++) {
-        let choice = choices[i];
-        let choiceBtn = 
+function selectAnswer(element) {
+    var optFor = element.target;
+    if (!optFor.dataset.correct) {
+        timer = timer-5;
     }
+    if (currentQ == questions.length-1) {
+        gameOver();
+    } else {
+        currentQ++;
+        clearQ();
+        displayQ(questions[currentQ]);
+    }
+}
+
+function clearQ() {
+    
 }
 
 // TODO: start timer when game is started, end game when timer equals 0
