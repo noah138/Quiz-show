@@ -94,6 +94,7 @@ var startButton = document.querySelector("#startGame");
 var startDisplay = document.querySelector("#startDisplay");
 var questionDisplay = document.querySelector("#questionsDisplay");
 var questionText = document.querySelector("#questionText");
+var answerChoice = document.querySelector("#answers");
 var endDisplay = document.querySelector("#endDisplay");
 var leaderboards = document.querySelector("#leaderboards");
 
@@ -126,7 +127,7 @@ function displayQ(question) {
             btn.dataset.correct = answer.correct;
         }
         btn.addEventListener("click", selectAnswer);
-        answerButtons.appendChild(btn);
+        answerChoice.appendChild(btn);
     });
 }
 
@@ -145,7 +146,9 @@ function selectAnswer(element) {
 }
 
 function clearQ() {
-    
+    while (answerChoice.firstChild) {
+        answerChoice.removeChild(answerChoice.firstChild);
+    }
 }
 
 // TODO: start timer when game is started, end game when timer equals 0
