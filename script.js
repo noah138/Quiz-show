@@ -107,6 +107,7 @@ var scoreSpan = document.querySelector("#score")
 // var highScoresList = document.querySelector("#highScoresList")
 // var clearScores = document.querySelector("#clearHighScores")
 
+
 startButton.addEventListener("click", startGame);
 seeHighScores.addEventListener("click", seeScores)
 
@@ -197,8 +198,7 @@ function clearQ() {
 }
 
 function gameOver() {
-    console.log(score)
-    window.location.href = "./input.html"
+    return window.location.assign("input.html")
 }
 
 // function gameOver() {
@@ -242,37 +242,3 @@ function gameOver() {
 //     localStorage.clear();
 //     location.reload();
 // }
-
-var username = document.getElementById('username');
-var saveScoreButton = document.getElementById('saveScoreButton');
-var finalScore = document.getElementById('finalScore');
-var mostRecentScore = localStorage.getItem('mostRecentScore');
-
-var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-
-const MAX_SCORES = 5;
-
-// finalScore.innerText = mostRecentScore;
-
-saveHighScore = (e) => {
-    e.preventDefault();
-
-    const score = {
-        score: mostRecentScore,
-        name: username.value,
-    };
-    highScores.push(score);
-    highScores.sort((a, b) => b.score - a.score);
-    highScores.splice(5);
-
-    localStorage.setItem('highScores', JSON.stringify(highScores));
-    window.location.assign('/');
-};
-
-var highScoresList = document.getElementById("highScoresList");
-var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
-highScoresList.innerHTML = highScores.map(score => {
-    return `<li class="high-score">${score.name} - ${score.score}</li>`;
-  })
-  .join("");
