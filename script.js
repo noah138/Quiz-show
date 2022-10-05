@@ -97,6 +97,12 @@ var questionText = document.querySelector("#questionText");
 var answerChoice = document.querySelector("#answers");
 var endDisplay = document.querySelector("#endDisplay");
 var leaderboards = document.querySelector("#leaderboards");
+var seeHighScores = document.querySelector("#seeHighScores");
+var seeScore = document.querySelector(".score");
+var seeTimer = document.querySelector(".timer");
+var timeLeftSpan = document.querySelector("#timer")
+var scoreSpan = document.querySelector("#score")
+var header = document.querySelector("#header");
 
 startButton.addEventListener("click", startGame);
 // highScoresButton.addEventListener("click", showScores);
@@ -106,15 +112,38 @@ function hideAll() {
     endDisplay.hidden = true;
     questionDisplay.hidden = true;
     leaderboards.hidden = true;
+    seeHighScores.hidden = true;
+    seeScore.hidden = true;
+    seeTimer.hidden = true;
 }
 
 function startGame() {
     hideAll();
+    seeScore.hidden = false;
+    seeTimer.hidden = false;
     questionDisplay.hidden = false;
     currentQ = 0;
     displayQ(questions[currentQ]);
-    timer = 30;
+    timeLeft = 31;
     displayTime();
+    displayScore();
+}
+
+function displayTime() {
+    clearInterval(timer);
+    timer = setInterval(function () {
+        timeLeft--;
+        timeLeftSpan.innerHTML = timeLeft;
+        if (timeLeft<=0) {
+            clearInterval(timer);
+            gameOver();
+        }
+    }, 1000);
+}
+
+function displayScore() {
+    clearInterval(score);
+    scoreSpan.innerHTML = score;
 }
 
 function displayQ(question) {
@@ -134,7 +163,12 @@ function displayQ(question) {
 function selectAnswer(element) {
     var optFor = element.target;
     if (!optFor.dataset.correct) {
-        timer = timer-5;
+        timeLeft = timeLeft-5;
+        score = score-2;
+        displayScore();
+    } if (optFor.dataset.correct) {
+        score=score+10;
+        displayScore();
     }
     if (currentQ == questions.length-1) {
         gameOver();
@@ -151,6 +185,11 @@ function clearQ() {
     }
 }
 
+function gameOver() {
+    hideAll();
+    endDisplay.hidden = false;
+    
+}
 // TODO: start timer when game is started, end game when timer equals 0
 // TODO: define startgame function - hide start page elements, show first question elements, randomly choose question
 // TODO: define function that goes to next question

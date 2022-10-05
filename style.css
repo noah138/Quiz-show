@@ -19,23 +19,23 @@
   }
   
 /* header */
-  header {
+header {
       display: flex;
-      justify-content: space-between;
-      margin: 5% 10%;
-      width: 85%;
+      justify-content: space-around;
+      margin: 5%;
+      width: 100%;
   }
 
-  header h2 {
+header h2 {
     display: inline;
   }
 
-  #seeHighScores:hover {
+#seeHighScores:hover {
       cursor: pointer;
       transform: scale(1.02);
       color: var(--tertiary);
   }
-  
+
  #timer {
       padding-right: 8vh;
       color: var(--primary);
