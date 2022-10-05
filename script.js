@@ -2,60 +2,83 @@
 var questions = [
     {
         question: "To which region are old world monkeys native?",
-        choices: ["a. Africa and Asia", "b. South America", "c. Only Asia", "d. Only Africa"],
-        answer: "a. Africa and Asia"
+        answers:[{text: "Africa and Asia", correct: true},
+                {text: "South America", correct: false},
+                {text: "Only Asia", correct: false},
+                {text: "Only Africa", correct: false}]
     },
     {
         question: "To which region are new world monkeys native?",
-        choices: ["a. The United States", "b. Mexico, and Central and South America", "c. Africa", "d. Oceania"],
-        answer: "b. Mexico, and Central and South America"
+        answers:[{text: "The United States", correct: false},
+                {text: "Mexico, and Central and South America", correct: true},
+                {text: "Africa", correct: false},
+                {text: "Oceania", correct: false}]
     },
     {
         question: "What is the smallest monkey in the world?",
-        choices: ["a. Graells's Tamarin", "b. Pygmy Marmoset", "c. Night Monkey", "d. Dusky Titi"],
-        answer: "b. Pygmy Marmoset"
+        answers:[{text: "Graells's Tamarin", correct: false},
+                {text: "Pygmy Marmoset", correct: true},
+                {text: "Night Monkey", correct: false},
+                {text: "Dusky Titi", correct: false}]
     },
     {
         question: "What is the largest monkey in the world?",
-        choices: ["a. Nepal Grey Langur", "b. Olive Baboon", "c. Mandrill", "d. Chacma Baboon"],
-        answer: "c. Mandrill"
+        answers:[{text: "Nepal Grey Langur", correct: false},
+                {text: "Olive Baboon", correct: false},
+                {text: "Mandrill", correct: true},
+                {text: "Chacma Baboon", correct: false}]
     },
     {
         question: "What is the loudest land animal on Earth?",
-        choices: ["a. Cicada", "b. Howler Monkey", "c. African Elephant", "d. Orangutan"],
-        answer: "b. Howler Monkey"
+        answers:[{text: "Cicada", correct: false},
+                {text: "Howler Monkey", correct: true},
+                {text: "African Elephant", correct: false},
+                {text: "Orangutan", correct: false}]
     },
     {
         question: "What traits do monkeys possess that apes don't?",
-        choices: ["a. Forward-facing eyes", "b. Opposable Thumbs", "c. Tails", "d. Fingernails"],
-        answer: "c. Tails"
+        answers:[{text: "Forward-facing eyes", correct: false},
+                {text: "Opposable Thumbs", correct: false},
+                {text: "Tails", correct: true},
+                {text: "Fingernails", correct: false}]
     },
     {
         question: "Around how many different species of monkeys are there?",
-        choices: ["a. 100", "b. 250", "c. 500", "d. 1000"],
-        answer: "b. 250"
+        answers:[{text: "100", correct: false},
+                {text: "250", correct: true},
+                {text: "500", correct: false},
+                {text: "1000", correct: false}]
     },
     {
         question: "What was the name of the first monkey to go to space?",
-        choices: ["a. Albert II", "b. Albert IV", "c. Enos", "d. Ham"],
-        answer: "a. Albert II"
+        answers:[{text: "Albert II", correct: true},
+                {text: "Albert IV", correct: false},
+                {text: "Enos", correct: false},
+                {text: "Ham", correct: false}]
     },
     {
         question: "What is the fastest monkey?",
-        choices: ["a. Bald Uakari", "b. Chacma Baboon", "c. Patas Monkey", "d. Proboscis Monkey"],
-        answer: "c. Patas Monkey"
-    },
-    {
-        question: "How old was the oldest monkey to ever live?",
-        choices: ["a. 54 years, 22 days", "b. 61 years, 26 days", "c. 65 years, 268 days", "d. 70 years, 52 days"],
-        answer: "c. 65 years, 268 days"
+        answers:[{text: "Bald Uakari", correct: false},
+                {text: "Chacma Baboon", correct: false},
+                {text: "Patas Monkey", correct: true},
+                {text: "Proboscis Monkey", correct: false}]
     },
     {
         question: "How long do monkeys sleep every night?",
-        choices: ["a. 3 hours", "b. 4.5 hours", "c. 6.5 hours", "d. 9.5 hours"],
-        answer: "d. 9.5 hours"
+        answers:[{text: "3 hours", correct: false},
+                {text: "4.5 hours", correct: false},
+                {text: "6.5 hours", correct: false},
+                {text: "9.5 hours", correct: true}]
+    },
+    {
+        question: "How old was the oldest monkey to ever live?",
+        answers:[{text: "54 years, 22 days", correct: false},
+                {text: "61 years, 26 days", correct: false},
+                {text: "65 years, 268 days", correct: true},
+                {text: "70 years, 52 days", correct: false}]
     },
 ]
+
 // TODO: declare global variables
 // global variables
 let score = 0;
@@ -63,6 +86,7 @@ let timer;
 let timeLeft;
 let userName = "";
 let finalScore;
+var currentQ;
 var maxHighScores = 5;
 
 // DOM objects
@@ -92,7 +116,17 @@ function startGame() {
 }
 
 function displayQ() {
+    let question = questions[currentQ];
+    let choices = question.choices;
+    let choiceBtn = document.querySelector()
 
+    let questionHeader = document.querySelector("#questionText");
+    questionHeader.textContent = question.question;
+
+    for (let i=0; i < choices.length; i++) {
+        let choice = choices[i];
+        let choiceBtn = 
+    }
 }
 
 // TODO: start timer when game is started, end game when timer equals 0
