@@ -23,7 +23,7 @@
             <div class="container center">
                 <h1>Monkey Quiz</h1>  
                 <p>Test your monkey knowledge! Once you start, you will have 30 seconds. Correct answers are worth 10 points and every incorrect answer penalizes you 2 points and takes 5 seconds off of the clock. Press Start Quiz below to begin!</p>
-                <button class="button" id="startGame">Start Quiz</button>
+                <button class="button" id="startGame" hidden>Start Quiz</button>
             </div>    
         </div>
 <!-- questions page -->
@@ -35,17 +35,17 @@
         </div>
 <!-- high scores page -->
         <div id="endDisplay" hidden>
-           <div class="container">
+           <div class="container"><h1 id="result"></h1>
             <form id="enterName" class="name">
               <p> Enter Name:
-                <input type="text" name="name" id="name" class="text-input" />
-                <button class="btn startend" id="sumbit-score" type="submit">Submit</button> </p>
+                <input type="text" name="name" id="name" class="nameInput" />
+                <button class="btn startend" id="sumbitScore" type="submit">Submit</button> </p>
               </form>
             </div>
         </div>
 
     <div id="leaderboards" hidden>
-        <div class="high-scores container">
+        <div class="highScores container">
             <h2>High Scores</h2>
             <ol id="highScores"></ol>
             <div>
@@ -54,14 +54,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="hide" id="correct">
-        <h2>Correct :)!</h2>
-    </div>
-    <div class="hide" id="wrong">
-        <h2>Wrong :( </h2>
-    </div> -->
-
     <script src="script.js"></script> 
 </body>
 </html>
