@@ -1,4 +1,3 @@
-// TODO: define the array of questions
 var questions = [
     {
         question: "To which region are old world monkeys native?",
@@ -82,38 +81,39 @@ var questions = [
 // TODO: declare global variables
 // global variables
 let score = 0;
-let finalScore;
 let timer;
 let timeLeft;
-let userName = "";
+// let username = "";
 var currentQ;
-var maxHighScores = 5;
-
-let highScores = JSON.parse(localStorage.getItem("highScores"))||[]
+// var maxHighScores = 5;
 
 // DOM objects
 var startButton = document.querySelector("#startGame");
 var startDisplay = document.querySelector("#startDisplay");
 var questionDisplay = document.querySelector("#questionsDisplay");
-var questionText = document.querySelector("#questionText");
+// var questionText = document.querySelector("#questionText");
 var answerChoice = document.querySelector("#answers");
 var endDisplay = document.querySelector("#endDisplay");
-var leaderboards = document.querySelector("#leaderboards");
+// var leaderboards = document.querySelector("#leaderboards");
 var seeHighScores = document.querySelector("#seeHighScores");
 var seeScore = document.querySelector(".score");
 var seeTimer = document.querySelector(".timer");
 var timeLeftSpan = document.querySelector("#timer")
 var scoreSpan = document.querySelector("#score")
-var header = document.querySelector("#header");
-var result = document.querySelector("#result")
-var submitScore = document.querySelector("#submitScore")
-var nameInput = document.querySelector("#nameInput")
-var highScoresList = document.querySelector("#highScoresList")
-var clearScores = document.querySelector("#clearHighScores")
+// var header = document.querySelector("#header");
+// var result = document.querySelector("#result")
+// var submitScore = document.querySelector("#submitScore")
+// var nameInput = document.querySelector("#nameInput")
+// var highScoresList = document.querySelector("#highScoresList")
+// var clearScores = document.querySelector("#clearHighScores")
 
 startButton.addEventListener("click", startGame);
-seeHighScores.addEventListener("click", showScores);
-clearScores.addEventListener("click", clearScores);
+seeHighScores.addEventListener("click", seeScores)
+
+function seeScores() {
+    window.location.href = "./highscores.html"
+}
+// clearScores.addEventListener("click", clearScores);
 
 startButton.hidden = false;
 
@@ -122,7 +122,7 @@ function hideAll() {
     startButton.hidden = true;
     endDisplay.hidden = true;
     questionDisplay.hidden = true;
-    leaderboards.hidden = true;
+    // leaderboards.hidden = true;
     seeHighScores.hidden = true;
     seeScore.hidden = true;
     seeTimer.hidden = true;
@@ -155,10 +155,10 @@ function displayTime() {
 function displayScore() {
     clearInterval(score);
     scoreSpan.innerHTML = score;
+    localStorage.setItem("mostRecentScore", score);
 }
 
 function displayQ(question) {
-    questionText.innerText = question.question;
     question.answers.forEach(answer => {
         var btn = document.createElement("button");
         btn.innerText = answer.text;
@@ -197,54 +197,82 @@ function clearQ() {
 }
 
 function gameOver() {
-    clearInterval(timeLeft)
-    timeLeftSpan.innerHTML = "Time's Up!";
-    hideAll();
-    endDisplay.hidden = false;
-    seeScore.hidden = false;
-    seeTimer.hidden = false;
-
-    result.innerText = "Your final score is: " + score;
-
-    submitScore.addEventListener("click", function() {
-        var score = {score: score,
-                    name: nameInput.value};
-        highScores.push(score);
-        highScores.sort((a,b)=>b.score - a.score);
-        highScores.splice(maxHighScores);
-
-        localStorage.setItem("highScores", JSON.stringify(highScores));
-        showScores()
-    })
+    console.log(score)
+    window.location.href = "./input.html"
 }
 
-function showScores() {
-    hideAll();
-    endDisplay.hidden = false;
-    highScoresList.innerHTML = highScores
-    .map(score => {
-        return '<li class="scoresList">${score.name}-${score.score}</li>';
-    })
-    .join("");
-    startButton.hidden = false
-}
+// function gameOver() {
+//     clearInterval(timeLeft)
+//     timeLeftSpan.innerHTML = "Time's Up!";
+//     hideAll();
+//     endDisplay.hidden = false;
+//     seeScore.hidden = false;
+//     seeTimer.hidden = false;
 
-function clearScores() {
-    localStorage.clear();
-    location.reload();
-}
+//     result.innerText = "Your final score is: " + score;
+// }
 
-// TODO: start timer when game is started, end game when timer equals 0
-// TODO: define startgame function - hide start page elements, show first question elements, randomly choose question
-// TODO: define function that goes to next question
-// TODO: show first question, decide how to sift for answer
-// TODO: write two outcomes: wrong answer or right answer
-// TODO: wrong answer decrements timer, both outcomes display a message on screen
-// TODO: go to next question unless there are none left in the question array, then go to game over screen
-// TODO: display score at end of the game
-// TODO: create leaderboards
-// TODO: create user input for submitting name and score to leaderboards
-// TODO: extra: make sure leaderboards can be accessed from the start screen
-// TODO: make a monkey screech when you press play
+// submitScore.addEventListener("click", function() {
+//     var score = {score: score,
+//                 name: nameInput.value};
+//     highScores.push(score);
+//     highScores.sort((a,b)=>b.score - a.score);
+//     highScores.splice(maxHighScores);
 
+//     localStorage.setItem("highScores", JSON.stringify(highScores));
+//     showScores()
+//     console.log(score)
+// })
 
+// function showScores() {
+//     clearInterval(timeLeft);
+//     timer.innerHTML = "";
+//     clearQ;
+//     hideAll();
+//     endDisplay.hidden = false;
+//     highScoresList.innerHTML = highScores
+//     .map(score => {
+//         return '<li class="scoresList">${score.name}-${score.score}</li>';
+//     })
+//     .join("");
+//     startButton.hidden = false
+// }
+
+// function clearScores() {
+//     localStorage.clear();
+//     location.reload();
+// }
+
+var username = document.getElementById('username');
+var saveScoreButton = document.getElementById('saveScoreButton');
+var finalScore = document.getElementById('finalScore');
+var mostRecentScore = localStorage.getItem('mostRecentScore');
+
+var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+const MAX_SCORES = 5;
+
+// finalScore.innerText = mostRecentScore;
+
+saveHighScore = (e) => {
+    e.preventDefault();
+
+    const score = {
+        score: mostRecentScore,
+        name: username.value,
+    };
+    highScores.push(score);
+    highScores.sort((a, b) => b.score - a.score);
+    highScores.splice(5);
+
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    window.location.assign('/');
+};
+
+var highScoresList = document.getElementById("highScoresList");
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+highScoresList.innerHTML = highScores.map(score => {
+    return `<li class="high-score">${score.name} - ${score.score}</li>`;
+  })
+  .join("");
