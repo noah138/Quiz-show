@@ -1,79 +1,64 @@
-/* :root {
-    --background-color: lightseagreen;
-    --mainFont: white;
-    --border: green;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  :root {
+    --primary: black;
+    --secondary: #00573F;
+    --tertiary: #1DB954;
+    --text: #303030;
+  }
 
-body {
-    background: radial-gradient(#e66465, #9198e5);
-}
+  body {
+    background: radial-gradient(#f2f3f4, #f5f5dc);
+    color: var(--secondary);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+/* header */
+  header {
+      display: flex;
+      justify-content: space-between;
+      margin: 5% 10%;
+      width: 85%;
+  }
 
+  header h2 {
+    display: inline;
+  }
+
+  #seeHighScores:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      color: var(--tertiary);
+  }
+  
+ #timer {
+      padding-right: 8vh;
+      color: var(--primary);
+      display: inline;
+  }
+
+/* global selectors */
 .container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
-}
-
-h1 {
-    margin-bottom: 5%;
-    color: var(--mainFont);
-}
-
-.column {
-    display: flex;
+    padding: 5%;
     flex-direction: column;
-}
+    width: 75%;
+    margin: auto;
+  }
 
-.flex-center {
-    justify-content: center;
+/* starting screen */
+.start {
     align-items: center;
-}
-
-.text-center {
     text-align: center;
-}
+    }
 
-.hidden {
-    display: none;
-}
-
-.button {
-    font-size: medium;
-    padding: 8px 0;
-    margin: 2% 0;
-    width: 20vw;
-    text-align: center;
-    color: var(--mainFont);
-    text-decoration: none;
-    background: linear-gradient(45deg, green, goldenrod);
-    border: 2px solid green;
-    border-radius: 5px;
-}
-
-.button:hover {
-    box-shadow: 0 0 20px white;
-    transition: ease-in-out 0.2s;
-    transform: scale(1.05);
-}
-
-#highScoresList {
-    list-style: numbers;
-    margin-bottom: 10%;
-}
-
-#submitScore {
-    border-radius: 0px;
-    border: 2px solid black;
-    background: radial-gradient(white 1%, black);
-    color: black;
-    height: 5vh;
-} */
+ h1 {
+    color: var(--primary);
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 5%;
+  }

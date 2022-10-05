@@ -1,19 +1,66 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div id="homescreen" class="column flex-center">
-            <h1>Welcome to the Quiz</h1>
-            <a href="/game/quiz.html" class="button" id="play">Play</a>
-            <a href="/leaderboards/leaderboards.html" class="button" id="leaderboards">Leaderboards</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Code Quiz | FUN </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+<!-- header -->
+        <header>
+            <h2 id="seeHighScores">See High Scores</h2> 
+            <h2 class="timer">Time Remaining: <span id="timer"></span></h2>
+        </header>
+<!-- starting page -->
+        <div id="startDisplay">
+            <div class="container start">
+                <h1>Monkey Quiz</h1>  
+                <p>Test your monkey knowledge! Once you start, you will have 30 seconds. Correct answers are worth 10 points and every incorrect answer penalizes you 2 points and takes 5 seconds off of the clock. Press Start Quiz below to begin!</p>
+                <button class="button" id="startGame">Start Quiz</button>
+            </div>    
+        </div>
+<!-- questions page -->
+        <div id="questionsDisplay" hidden>
+            <div class="container questions">
+                <div id="question"></div>
+                <div id="answers" class="btnAnswers"></div>
+            </div>
+        </div>
+<!-- high scores page -->
+        <div id="endDisplay" hidden>
+           <div class="container">
+            <form id="enterName" class="name">
+              <p> Enter Name:
+                <input type="text" name="name" id="name" class="text-input" />
+                <button class="btn startend" id="sumbit-score" type="submit">Submit</button> </p>
+              </form>
+            </div>
+        </div>
+
+    <div id="leaderboards" hidden>
+        <div class="high-scores container">
+            <h2>High Scores</h2>
+            <ol id="highScores"></ol>
+            <div>
+                <button class="button" id="goBack">Return Home</button>
+                <button class="button" id="clearHighScores">Clear High Scores</button>
+            </div>
         </div>
     </div>
+
+    <div class="hide" id="correct">
+        <h2>Correct :)!</h2>
+    </div>
+    <div class="hide" id="wrong">
+        <h2>Wrong :( </h2>
+    </div>
+
+    <script src="script.js"></script> 
 </body>
-</html> -->
+</html>
