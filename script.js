@@ -78,87 +78,84 @@ var questions = [
     },
 ]
 
-// TODO: declare global variables
 // global variables
 let score = 0;
 let timer;
 let timeLeft;
-// let username = "";
 var currentQ;
-// var maxHighScores = 5;
 
 // DOM objects
 var startButton = document.querySelector("#startGame");
 var startDisplay = document.querySelector("#startDisplay");
 var questionDisplay = document.querySelector("#questionsDisplay");
-// var questionText = document.querySelector("#questionText");
+var questionText = document.querySelector("#questionText");
 var answerChoice = document.querySelector("#answers");
 var endDisplay = document.querySelector("#endDisplay");
-// var leaderboards = document.querySelector("#leaderboards");
-var seeHighScores = document.querySelector("#seeHighScores");
+var highScoresDisplay = document.querySelector("#highScoresDisplay");
+var highScoreName = document.querySelector("#highScoresName");
+var highScoreScore = document.querySelector("#highScoresScore");
 var seeScore = document.querySelector(".score");
 var seeTimer = document.querySelector(".timer");
 var timeLeftSpan = document.querySelector("#timer")
 var scoreSpan = document.querySelector("#score")
-// var header = document.querySelector("#header");
-// var result = document.querySelector("#result")
-// var submitScore = document.querySelector("#submitScore")
-// var nameInput = document.querySelector("#nameInput")
-// var highScoresList = document.querySelector("#highScoresList")
-// var clearScores = document.querySelector("#clearHighScores")
-
-
-startButton.addEventListener("click", startGame);
-seeHighScores.addEventListener("click", seeScores)
-
-function seeScores() {
-    window.location.href = "./highscores.html"
-}
-// clearScores.addEventListener("click", clearScores);
+var header = document.querySelector("#header");
+var gameOverContainer = document.querySelector("#gameOverContainer")
+var finalScoreEl = document.querySelector("#finalScore")
+var result = document.querySelector("#result")
+var submitScore = document.querySelector("#submitScore")
+var nameInput = document.querySelector("#nameInput")
+var clearScores = document.querySelector("#clearScores")
+var submitScoreButton = document.querySelector("#submitScore")
 
 startButton.hidden = false;
 
+// Hides all the displays except for load screen
 function hideAll() {
     startDisplay.hidden = true;
     startButton.hidden = true;
-    endDisplay.hidden = true;
     questionDisplay.hidden = true;
-    // leaderboards.hidden = true;
-    seeHighScores.hidden = true;
+    highScoresDisplay.hidden = true;
     seeScore.hidden = true;
     seeTimer.hidden = true;
+    gameOverContainer.hidden = true;
 }
 
+// First hides all, then displays the first question, time remaining, and score
+// Sets time to 30 and scorfe to 0
 function startGame() {
     hideAll();
+    timeLeft = 31;
+    score = 0;
+    currentQ = 0;
     seeScore.hidden = false;
     seeTimer.hidden = false;
     questionDisplay.hidden = false;
-    currentQ = 0;
     displayQ(questions[currentQ]);
-    timeLeft = 31;
     displayTime();
     displayScore();
 }
 
+// Displays the time remaining, which counts down from 30 seconds
+// When you reach zero seconds the game ends
 function displayTime() {
-    clearInterval(timer);
     timer = setInterval(function () {
         timeLeft--;
         timeLeftSpan.innerHTML = timeLeft;
         if (timeLeft<=0) {
             clearInterval(timer);
+            localStorage.setItem("mostRecentScore", score);
             gameOver();
         }
     }, 1000);
 }
 
+// Updates the score and displays it next to the score header
 function displayScore() {
     clearInterval(score);
     scoreSpan.innerHTML = score;
-    localStorage.setItem("mostRecentScore", score);
 }
 
+// Creates 4 clickable buttons with each choice displayed inside
 function displayQ(question) {
     question.answers.forEach(answer => {
         var btn = document.createElement("button");
@@ -172,6 +169,11 @@ function displayQ(question) {
     });
 }
 
+// For question selection
+// If the answer you click on doesn't match the correct answer from the dataset, your score and time are decreased
+// If your answer matches, your score is increased
+// Regardless of answer next question in the questions array is shown
+// When there are no more questions to fetch run the gameOver() function
 function selectAnswer(element) {
     var optFor = element.target;
     if (!optFor.dataset.correct) {
@@ -183,6 +185,7 @@ function selectAnswer(element) {
         displayScore();
     }
     if (currentQ == questions.length-1) {
+        localStorage.setItem("mostRecentScore", score);
         gameOver();
     } else {
         currentQ++;
@@ -191,54 +194,78 @@ function selectAnswer(element) {
     }
 }
 
+// Clears the choices for the question
 function clearQ() {
     while (answerChoice.firstChild) {
         answerChoice.removeChild(answerChoice.firstChild);
     }
 }
 
+// Hides all, displays the game over screen and displays your score
 function gameOver() {
-    return window.location.assign("input.html")
+    hideAll();
+    clearInterval(timer);
+    gameOverContainer.hidden = false;
+    nameInput.value = "";
+    finalScoreEl.innerHTML = "You got finished with a score of " + score;
 }
 
-// function gameOver() {
-//     clearInterval(timeLeft)
-//     timeLeftSpan.innerHTML = "Time's Up!";
-//     hideAll();
-//     endDisplay.hidden = false;
-//     seeScore.hidden = false;
-//     seeTimer.hidden = false;
+// When name is submitted, highscore function runs which saves and turns the array of high scores already saved into strings and pushes our new name and score into the array
+submitScoreButton.addEventListener("click", function highScore() { 
+    if(nameInput.value === "") {
+        alert("Please enter a name");
+        return false;
+    }else{
+        var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+        var userName = nameInput.value;
+        var currentHighScore = {
+            name: userName,
+            score: score
+        };
+    
+        hideAll();
+        highScoresDisplay.hidden = false;
 
-//     result.innerText = "Your final score is: " + score;
-// }
+        savedHighScores.push(currentHighScore);
+        localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
+        generateHighScores();
 
-// submitScore.addEventListener("click", function() {
-//     var score = {score: score,
-//                 name: nameInput.value};
-//     highScores.push(score);
-//     highScores.sort((a,b)=>b.score - a.score);
-//     highScores.splice(maxHighScores);
+    }
+    
+});
 
-//     localStorage.setItem("highScores", JSON.stringify(highScores));
-//     showScores()
-//     console.log(score)
-// })
+// Clears the list for the high scores and generates a new high score list from local storage
+function generateHighScores() {
+    highScoreName.innerHTML = "";
+    highScoreScore.innerHTML = "";
 
-// function showScores() {
-//     clearInterval(timeLeft);
-//     timer.innerHTML = "";
-//     clearQ;
-//     hideAll();
-//     endDisplay.hidden = false;
-//     highScoresList.innerHTML = highScores
-//     .map(score => {
-//         return '<li class="scoresList">${score.name}-${score.score}</li>';
-//     })
-//     .join("");
-//     startButton.hidden = false
-// }
+    var highScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+    
+    for (i = 0; i < highScores.length; i++) {
 
-// function clearScores() {
-//     localStorage.clear();
-//     location.reload();
-// }
+        var newNameSpan = document.createElement("li");
+        var newScoreSpan = document.createElement("li");
+
+        newNameSpan.textContent = highScores[i].name;
+        newScoreSpan.textContent = highScores[i].score;
+        highScoreName.appendChild(newNameSpan);
+        highScoreScore.appendChild(newScoreSpan);
+    }
+}
+
+// Shows only the highscores page
+function showHighscore() {
+    hideAll();
+    highScoresDisplay.hidden = false;
+    gameOverButtons.hidden = false;
+    generateHighScores();
+}
+
+// Clears local storage of scores and names
+function clearScore() {
+    window.localStorage.clear();
+    highScoreName.textContent = "";
+    highScoreScore.textContent = "";
+}
+
+startButton.addEventListener('click', startGame);

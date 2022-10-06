@@ -33,16 +33,25 @@
                     <div id="answers"></div>
             </div>
         </div>
-<!-- high scores page -->
-        <div id="endDisplay" hidden>
-           <div class="container"><h1 id="result"></h1>
-            <form id="enterName" class="name">
-              <p> Enter Name:
-                <input type="text" name="name" id="name" class="nameInput" />
-                <button class="btn startend" id="submitScore" type="submit">Submit</button> </p>
-              </form>
-            </div>
+<!-- game over page -->
+        <div id="gameOverContainer" hidden>
+            <div id="finalScore"></div>
+            <input type="text" size = "50" placeholder="Enter your name here" name="name" id="nameInput"/>
+            <button id="submitScore">Submit Score</button>                
         </div>
-    <script src="script.js"></script> 
+<!-- high scores page -->
+            <div id="highScoresDisplay" hidden>
+                <div id="highScoresHeader">
+                    <h3>Name</h3>
+                    <h3>Score</h3>
+                </div>
+                <div id="highScoresName"></div>
+                <div id="highScoresScore"></div>
+            </div>
+            <div id="gameOverButtons" hidden>
+                <button id="playAgain" onclick="startGame()">Play Again</button>
+                <button id="clearScores" onclick="clearScores()">Clear Highscores</button>
+            </div>
+        <script src="script.js"></script>
 </body>
 </html>
