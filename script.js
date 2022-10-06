@@ -128,15 +128,15 @@ function hideAll() {
 // Sets time to 30 and score to 0
 function startGame() {
     hideAll();
-    questionDisplay.hidden = false;
+    seeScore.hidden = false;
+    seeTimer.hidden = false;
     timeLeft = 31;
     score = 0;
     currentQ = 0;
-    seeScore.hidden = false;
-    seeTimer.hidden = false;
     displayQ(questions[currentQ]);
     displayTime();
     displayScore();
+    questionDisplay.hidden = false;
 }
 
 // Displays the time remaining, which counts down from 30 seconds
@@ -161,6 +161,7 @@ function displayScore() {
 
 // Creates 4 clickable buttons with each choice displayed inside
 function displayQ(question) {
+    questionText.innerText = question.question
     question.answers.forEach(answer => {
         var btn = document.createElement("button");
         btn.innerText = answer.text;

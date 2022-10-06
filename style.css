@@ -22,13 +22,19 @@
 header {
       display: flex;
       justify-content: space-around;
-      margin: 5%;
+      margin-top: 5%;
+      margin-bottom: 4%;
       width: 100%;
   }
 
 header h2 {
     display: inline;
   }
+
+#seeHighScores {
+    display: flex;
+    align-self: center;
+}
 
 #seeHighScores:hover {
       cursor: pointer;
@@ -98,27 +104,38 @@ header h2 {
 }
 
 #highScoresName{
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 #highScoresScore{
-  float: right;
-  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#highScoresContent {
+  display: flex;
+  justify-content: space-around;
 }
 
 #highScoresHeader {
   display: flex;
   justify-content: space-around;
+  padding-bottom: 20px;
 }
 
 #gameOverButtons {
   display: flex;
-  justify-content: center;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
 }
 
 #playAgain,
 #clearScores {
   width: 20%;
+}
+
+#finalScore {
+  font-size: x-large;
+  margin-bottom: 5%;
 }

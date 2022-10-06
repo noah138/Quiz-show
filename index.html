@@ -34,10 +34,10 @@
             </div>
         </div>
 <!-- game over page -->
-        <div id="gameOverContainer" hidden>
+        <div id="gameOverContainer" class = "container center" hidden>
             <div id="finalScore"></div>
-            <input type="text" size = "50" placeholder="Enter your name here" name="name" id="nameInput"/>
-            <button id="submitScore">Submit Score</button>                
+            <input type="text" size = "50" placeholder="Enter your name here" name="name" id="nameInput" class="button"/>
+            <button id="submitScore" class = "button">Submit Score</button>                
         </div>
 <!-- high scores page -->
             <div id="highScoresDisplay" class = "container center" hidden>
@@ -45,12 +45,14 @@
                     <h3>Name</h3>
                     <h3>Score</h3>
                 </div>
-                <div id="highScoresName"></div>
-                <div id="highScoresScore"></div>
+                <div id="highScoresContent">
+                    <div id="highScoresName"></div>
+                    <div id="highScoresScore"></div>
+                </div>
             </div>
-            <div id="gameOverButtons" hidden>
+            <div id="gameOverButtons" class = "container center" hidden>
                 <button class = "button" id="playAgain" onclick="restart()" hidden>Play Again</button>
-                <button class = "button" id="clearScores" onclick="clearScore()" hidden>Clear Highscores</button>
+                <button class = "button" id="clearScores" onclick="clearScore()" hidden>Clear Scores</button>
             </div>
         <script src="script.js"></script>
 </body>
