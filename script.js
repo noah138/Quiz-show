@@ -106,8 +106,10 @@ var submitScore = document.querySelector("#submitScore")
 var nameInput = document.querySelector("#nameInput")
 var clearScores = document.querySelector("#clearScores")
 var submitScoreButton = document.querySelector("#submitScore")
+var seeHighScores = document.querySelector("#seeHighScores")
 
 startButton.hidden = false;
+seeHighScores.hidden = false;
 
 // Hides all the displays except for load screen
 function hideAll() {
@@ -118,18 +120,20 @@ function hideAll() {
     seeScore.hidden = true;
     seeTimer.hidden = true;
     gameOverContainer.hidden = true;
+    seeHighScores.hidden = true;
+    gameOverButtons.hidden = true;
 }
 
 // First hides all, then displays the first question, time remaining, and score
-// Sets time to 30 and scorfe to 0
+// Sets time to 30 and score to 0
 function startGame() {
     hideAll();
+    questionDisplay.hidden = false;
     timeLeft = 31;
     score = 0;
     currentQ = 0;
     seeScore.hidden = false;
     seeTimer.hidden = false;
-    questionDisplay.hidden = false;
     displayQ(questions[currentQ]);
     displayTime();
     displayScore();
@@ -229,6 +233,7 @@ submitScoreButton.addEventListener("click", function highScore() {
         savedHighScores.push(currentHighScore);
         localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
         generateHighScores();
+        showHighscore();
 
     }
     
@@ -257,7 +262,8 @@ function generateHighScores() {
 function showHighscore() {
     hideAll();
     highScoresDisplay.hidden = false;
-    gameOverButtons.hidden = false;
+    playAgain.hidden = false;
+    clearScores.hidden = false;
     generateHighScores();
 }
 
@@ -268,4 +274,9 @@ function clearScore() {
     highScoreScore.textContent = "";
 }
 
+function restart() {
+    window.location.href = "./index.html"
+}
+
 startButton.addEventListener('click', startGame);
+seeHighScores.addEventListener('click', showHighscore);

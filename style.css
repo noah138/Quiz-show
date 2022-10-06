@@ -93,17 +93,32 @@ header h2 {
     transition: ease-in-out 0.3s;
 }
 
-#highScoresList {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 4rem;
-  }
-  
-  .high-score {
-    font-size: 2.8rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .high-score:hover {
-    transform: scale(1.025);
-  }
+#highScoresDisplay {
+  height: 200px;
+}
+
+#highScoresName{
+  display: inline-block;
+}
+
+#highScoresScore{
+  float: right;
+  padding-right: 10px;
+}
+
+#highScoresHeader {
+  display: flex;
+  justify-content: space-around;
+}
+
+#gameOverButtons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+#playAgain,
+#clearScores {
+  width: 20%;
+}
